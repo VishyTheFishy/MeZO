@@ -445,7 +445,7 @@ class Trainer(LinearHeadTrainer):
             model, optimizer = amp.initialize(model, optimizer, opt_level=self.args.fp16_opt_level)
 
         # Multi-gpu training (should be after apex fp16 initialization)
-        print("ARGS", self.args.n_gpu)
+        print("ARGS", self.args)
 
         # Train
         total_train_batch_size = (
