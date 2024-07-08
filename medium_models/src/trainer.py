@@ -445,10 +445,8 @@ class Trainer(LinearHeadTrainer):
             model, optimizer = amp.initialize(model, optimizer, opt_level=self.args.fp16_opt_level)
 
         # Multi-gpu training (should be after apex fp16 initialization)
-        if self.args.n_gpu > 1:
-            model = torch.nn.DataParallel(model)
+        print("ARGS", self.args.n_gpu)
 
-        # Distributed training (should be after apex fp16 initialization)
         # Train
         total_train_batch_size = (
             self.args.train_batch_size
