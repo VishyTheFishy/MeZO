@@ -448,14 +448,6 @@ class Trainer(LinearHeadTrainer):
             model = torch.nn.DataParallel(model)
 
         # Distributed training (should be after apex fp16 initialization)
-        if self.args.local_rank != -1:
-            model = torch.nn.parallel.DistributedDataParallel(
-                model,
-                device_ids=[self.args.local_rank],
-                output_device=self.args.local_rank,
-                find_unused_parameters=True,
-            )
-
         # Train
         total_train_batch_size = (
             self.args.train_batch_size
