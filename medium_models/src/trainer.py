@@ -323,7 +323,6 @@ class Trainer(LinearHeadTrainer):
         # no need to run backprop if we are using parameter norm variant, can just measure them
         elif self.args.zo_variant == 'param_norm':
             for name, param in self.named_parameters_to_optim:
-                print(name)
                 ckey = self.retrieve_c(name)
                 if ckey in self.cs:
                     self.cs[ckey] += torch.sum(param.data ** 2)
@@ -444,7 +443,6 @@ class Trainer(LinearHeadTrainer):
             model, optimizer = amp.initialize(model, optimizer, opt_level=self.args.fp16_opt_level)
 
         # Multi-gpu training (should be after apex fp16 initialization)
-        print("ARGS", self.args)
 
         # Train
         total_train_batch_size = (
