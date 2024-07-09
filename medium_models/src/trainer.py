@@ -595,9 +595,10 @@ class Trainer(LinearHeadTrainer):
 
                             projected_grad = (loss1 - loss2) / (2 * self.args.zero_order_eps)
                             if projected_grad > 0:
-                                projected_grad = 1
+                                projected_grad.fill_(1)
                             else:
-                                projected_grad = -1
+                                projected_grad.fill_(-1)
+                            print(projected_grad)
 
                             # scale grad according to accumulation
                             if self.args.gradient_accumulation_steps > 1:
