@@ -237,7 +237,6 @@ class Trainer(LinearHeadTrainer):
     def efficient_perturb_parameters(self, model: nn.Module, random_seed: int, scaling_factor=1):
         torch.manual_seed(random_seed)
         for name, param in self.named_parameters_to_optim:
-            print("THE CURRENT DEVICE IS", param.data.device)
             z = torch.normal(mean=0, std=1, size=param.data.size(), device=param.data.device, dtype=param.data.dtype)
             param.data = param.data + scaling_factor * z * self.args.zero_order_eps
         return model
