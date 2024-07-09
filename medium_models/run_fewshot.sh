@@ -8,7 +8,7 @@ MODEL=${MODEL:-"roberta-large"}  # pick a RoBERTa or BERT model
 TYPE=${TYPE:-"prompt"}          # fine-tuning setting, choose from "finetune" and "prompt"
 TRAINER=${TRAINER:-"standard"}  # choose from "standard" and "linearhead"
 TAG=${TAG:-}                    # set a tag to distinguish and aggregate runs in the log
-NUM_GPU=${NUM_GPU:1}           # by default use 1 GPU, set to 0 for CPU-only training
+NUM_GPU=1           # by default use 1 GPU, set to 0 for CPU-only training
 OPT=${OPT:-"adam"}
 STEPS=${STEPS:-1000}
 
@@ -103,19 +103,7 @@ ALL_ARGS_TOGETHER="
 
 echo "NUMBER OF GPUS"
 echo $NUM_GPU
-if [[ $NUM_GPU > 1 ]]; then
-    # Randomly set a port number
-    # If you encounter "address already used" error, just run again or manually set an available port id.
-    PORT_ID=$(expr $RANDOM + 1000)
-
-    # Allow multiple threads
-    export OMP_NUM_THREADS=8
-
-    python -m torch.distributed.launch --nproc_per_node $NUM_GPU --master_port $PORT_ID run.py \
-        $ALL_ARGS_TOGETHER
-else
-    python run.py \
-        $ALL_ARGS_TOGETHER
-fi
+python run.py \
+    $ALL_ARGS_TOGETHER
 
 rm -rf result/$TASK-$MODEL-$TYPE-$TRAINER-$TAG$GRID_TAG/$K-$SEED
