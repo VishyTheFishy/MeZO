@@ -827,6 +827,7 @@ class Trainer(LinearHeadTrainer):
             raise ValueError("eval_dataset must implement __len__")
 
         eval_dataloader = self.get_eval_dataloader(eval_dataset)
+        print(len(eval_dataloader))
 
         output = self.prediction_loop(eval_dataloader, description="Evaluation")
 
