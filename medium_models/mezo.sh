@@ -7,8 +7,8 @@ BS=${BS:-64}
 LR=${LR:-1e-6}
 EPS=${EPS:-1e-3}
 WD=${WD:-0}
-STEP=${STEP:-1000}
-EVAL_STEP=${EVAL_STEP:-10000}
+STEP=${STEP:-8000}
+EVAL_STEP=${EVAL_STEP:-100000}
 MODEL=${MODEL:-roberta-large}
 
 LOGITS=$(jq -n '{"SNLI": 3, "MNLI": 3, "trec": 6, "sst-5": 5}["'$TASK'"] // 2')
