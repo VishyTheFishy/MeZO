@@ -601,6 +601,12 @@ class MyDataCollatorWithPadding:
 
 
 def main():
+
+    import torch
+    print("CUDA available: ", torch.cuda.is_available())
+    print("CUDA device count: ", torch.cuda.device_count())
+    print("CUDA device name: ", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "None")
+
     parser = HfArgumentParser((ModelArguments, DynamicDataTrainingArguments, DynamicTrainingArguments))
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
         # If we pass only one argument to the script and it's the path to a json file,
