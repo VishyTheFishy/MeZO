@@ -408,6 +408,7 @@ class Trainer(LinearHeadTrainer):
         # Data loading.
         train_dataloader = self.get_train_dataloader()
         num_update_steps_per_epoch = len(train_dataloader) // self.args.gradient_accumulation_steps
+        print(len(train_dataloader))
         if num_update_steps_per_epoch == 0:
             num_update_steps_per_epoch = 1
         if self.args.max_steps > 0:
@@ -775,7 +776,7 @@ class Trainer(LinearHeadTrainer):
                     epoch_iterator.close()
                     break
 
-                if self.args.evaluate_during_training and self.state.global_step % self.args.eval_steps == 0:
+                if False: #self.args.evaluate_during_training and self.state.global_step % self.args.eval_steps == 0:
                     output = self.evaluate()
                     metrics = output.metrics
                     objective = self.dev_objective(metrics)
