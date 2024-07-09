@@ -594,6 +594,7 @@ class Trainer(LinearHeadTrainer):
                                 loss2 = self.zo_forward(model, inputs)
 
                             projected_grad = (loss1 - loss2) / (2 * self.args.zero_order_eps)
+                            print(projected_grad)
 
                             # scale grad according to accumulation
                             if self.args.gradient_accumulation_steps > 1:
