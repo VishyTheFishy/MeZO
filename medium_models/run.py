@@ -691,7 +691,7 @@ def main():
         and not training_args.overwrite_output_dir
     ):
         raise ValueError(f"Output directory ({training_args.output_dir}) already exists.")
-
+    print("num gpus", training_args.n_gpu)
     logger.warning(
         "Process rank: %s, device: %s, n_gpu: %s, distributed training: %s, 16-bits training: %s",
         training_args.local_rank,
