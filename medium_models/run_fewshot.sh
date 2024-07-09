@@ -8,7 +8,7 @@ MODEL=${MODEL:-"roberta-large"}  # pick a RoBERTa or BERT model
 TYPE=${TYPE:-"prompt"}          # fine-tuning setting, choose from "finetune" and "prompt"
 TRAINER=${TRAINER:-"standard"}  # choose from "standard" and "linearhead"
 TAG=${TAG:-}                    # set a tag to distinguish and aggregate runs in the log
-NUM_GPU=${NUM_GPU:-1}           # by default use 1 GPU, set to 0 for CPU-only training
+NUM_GPU=${NUM_GPU:1}           # by default use 1 GPU, set to 0 for CPU-only training
 OPT=${OPT:-"adam"}
 STEPS=${STEPS:-1000}
 
