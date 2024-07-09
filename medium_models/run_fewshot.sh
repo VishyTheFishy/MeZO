@@ -94,7 +94,7 @@ ALL_ARGS_TOGETHER="
     --trainer $TRAINER
     --optimizer $OPT --max_steps $STEPS
     --logging_steps 10
-    --per_device_eval_batch_size 4
+    --per_device_eval_batch_size 8
     --evaluate_during_training
     $TASK_EXTRA
     $LOAD_KERNELS
