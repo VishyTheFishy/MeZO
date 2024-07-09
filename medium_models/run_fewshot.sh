@@ -101,6 +101,8 @@ ALL_ARGS_TOGETHER="
     $@
 "
 
+echo "NUMBER OF GPUS"
+echo $NUM_GPU
 if [[ $NUM_GPU > 1 ]]; then
     # Randomly set a port number
     # If you encounter "address already used" error, just run again or manually set an available port id.
