@@ -598,7 +598,6 @@ class Trainer(LinearHeadTrainer):
                                 projected_grad.fill_(1)
                             else:
                                 projected_grad.fill_(-1)
-                            print(projected_grad)
 
                             # scale grad according to accumulation
                             if self.args.gradient_accumulation_steps > 1:
