@@ -9,7 +9,7 @@ TYPE=${TYPE:-"prompt"}          # fine-tuning setting, choose from "finetune" an
 TRAINER=${TRAINER:-"standard"}  # choose from "standard" and "linearhead"
 TAG=${TAG:-}                    # set a tag to distinguish and aggregate runs in the log
 NUM_GPU=1           # by default use 1 GPU, set to 0 for CPU-only training
-OPT=${OPT:-"adam"}
+OPT=${OPT:-"SophiaG"}
 STEPS=${STEPS:-1000}
 
 TASK_EXTRA=""
