@@ -50,6 +50,7 @@ from transformers.integrations import (
     is_wandb_available,
 )
 from transformers.optimization import AdamW, get_linear_schedule_with_warmup, get_scheduler
+from sophia import SophiaG
 
 from transformers.trainer_callback import (
     DefaultFlowCallback,
@@ -205,6 +206,15 @@ class Trainer(LinearHeadTrainer):
                     optimizer_grouped_parameters,
                     lr=self.args.learning_rate
                 )
+            elif self.args.optimizer == 'SophiaG':
+                self.optimizer = SophiaG(
+                    optimizer_grouped_parameters,
+                    lr=self.args.learning_rate,
+                    betas=(0.965, 0.99),
+                    rho=0.01,
+                    weight_decay=1e-1
+                )
+
             else:
                 raise NotImplementedError
         if self.lr_scheduler is None:
