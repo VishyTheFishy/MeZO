@@ -22,6 +22,7 @@ import collections
 from src.models import MODEL_TYPES
 import torch
 import torch.nn.functional as F
+from torch import nn
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 from sklearn.linear_model import LinearRegression, LogisticRegression, LogisticRegressionCV
 
