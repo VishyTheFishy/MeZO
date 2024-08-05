@@ -51,6 +51,7 @@ from transformers.integrations import (
 )
 from transformers.optimization import AdamW, get_linear_schedule_with_warmup, get_scheduler
 from sophia import SophiaG
+from adahessian import Adahessian
 
 from transformers.trainer_callback import (
     DefaultFlowCallback,
@@ -214,6 +215,16 @@ class Trainer(LinearHeadTrainer):
                     rho=0.01,
                     weight_decay=1e-1
                 )
+            elif self.args.optimizer == 'adahessian':
+                self.optimizer = Adahessian(
+                    optimizer_grouped_parameters,
+                    lr= 1.0,
+                    betas= (0.9, 0.999),
+                    eps= 1e-4,
+                    weight_decay=0.0,
+                    hessian_power=1.0
+                )
+
 
             else:
                 raise NotImplementedError
