@@ -129,6 +129,7 @@ class LinearHeadTrainer(transformers.Trainer):
             loss = self.compute_loss(model, inputs)
 
         del inputs
+        kwargs = {}
         self.accelerator.backward(loss, **kwargs, create_graph = True)
 
         return loss.detach() / self.args.gradient_accumulation_steps
